@@ -9,7 +9,7 @@ type CardProps = {
   action?: string
   name: string
   fileStatus: string
-  languages: string[] // Add languages property
+  languages: string[]
   onDelete: () => void
 }
 

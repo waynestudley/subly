@@ -25,4 +25,6 @@ The icons etc. don't exactly match those of the visuals supplied - I cut corners
 
 On 'error' cards - the delete button does remove the item from the current state (refresh to revert) - this should really have a confirmation window to OK the deletion but I let this go... not out of laziness - just as I like the imediacy of the deletion!
 
+You'll note I've not added comments in any of the components - I usually do (in a collaborative environment) so that others with understand the implementation but here I haven't added any - I guess I should have!
+
 I had started to build some basic mocked tests but I'm wary of time - I had suggested to Gemma earliler today that I'd get this over early afternoon - so I'm going to push this as it is (the only tests there currently fail) - I'll get back to it later in the day and update the GitHub repo with some working tests.
