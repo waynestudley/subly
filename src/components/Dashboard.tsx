@@ -3,6 +3,7 @@ import axios from 'axios'
 import ImageScroller from './ImageScroller'
 
 type CardData = {
+  id: number
   title: string
   subtitle: string
   status: 'transcribing' | 'error' | 'edited'
@@ -22,9 +23,13 @@ const Dashboard: React.FC = () => {
       try {
         const response = await axios.get(API_URL)
         
-        // Check if the response is an array
         if (Array.isArray(response.data)) {
-          setCards(response.data)
+          // Assuming each card has a unique id
+          const dataWithId = response.data.map((card: CardData, index: number) => ({
+            ...card,
+            id: index
+          }))
+          setCards(dataWithId)
           setError(null)
         } else {
           throw new Error('API response is not an array')
@@ -37,12 +42,16 @@ const Dashboard: React.FC = () => {
     fetchData()
   }, [])
 
+  const handleDelete = (id: number) => {
+    setCards((prevCards) => prevCards.filter((card) => card.id !== id))
+  }
+
   return (
     <div style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       {error ? (
         <div>{error}</div>
       ) : (
-        <ImageScroller cards={cards} />
+        <ImageScroller cards={cards} onDelete={handleDelete} />
       )}
     </div>
   )

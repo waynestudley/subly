@@ -2,20 +2,21 @@ import React, { useRef, useState, useEffect } from 'react'
 import Card from './Card'
 
 type CardData = {
+  id: number
   title: string
   subtitle: string
   status: 'transcribing' | 'error' | 'edited'
   cover?: string
-  action?: string
   name: string
   fileStatus: string
 }
 
 type ImageScrollerProps = {
   cards: CardData[]
+  onDelete: (id: number) => void
 }
 
-const ImageScroller: React.FC<ImageScrollerProps> = ({ cards }) => {
+const ImageScroller: React.FC<ImageScrollerProps> = ({ cards, onDelete }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -45,7 +46,27 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ cards }) => {
 
   return (
     <div style={{ position: 'relative', width: '100%', display: 'flex', alignItems: 'center' }}>
-      <button onClick={scrollLeft} style={{ position: 'absolute', left: 0, zIndex: 1 }}>←</button>
+      <button 
+        onClick={scrollLeft} 
+        style={{ 
+          position: 'absolute', 
+          left: 0, 
+          zIndex: 1, 
+          width: '50px', 
+          height: '50px', 
+          borderRadius: '50%', 
+          backgroundColor: '#fff', 
+          border: '2px solid #000', 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          fontSize: '24px', 
+          fontWeight: 'bold', 
+          cursor: 'pointer'
+        }}
+      >
+        ←
+      </button>
       <div
         ref={containerRef}
         style={{
@@ -57,21 +78,41 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ cards }) => {
           gap: '16px'
         }}
       >
-        {cards.map((card, index) => (
-          <div key={index} style={{ flexShrink: 0 }}>
+        {cards.map((card) => (
+          <div key={card.id} style={{ flexShrink: 0 }}>
             <Card
               title={card.title}
               subtitle={card.subtitle}
               status={card.status}
               image={card.cover}
-              action={card.action}
               name={card.name}
               fileStatus={card.fileStatus}
+              onDelete={() => onDelete(card.id)}
             />
           </div>
         ))}
       </div>
-      <button onClick={scrollRight} style={{ position: 'absolute', right: 0, zIndex: 1 }}>→</button>
+      <button 
+        onClick={scrollRight} 
+        style={{ 
+          position: 'absolute', 
+          right: 0, 
+          zIndex: 1, 
+          width: '50px', 
+          height: '50px', 
+          borderRadius: '50%', 
+          backgroundColor: '#fff', 
+          border: '2px solid #000', 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          fontSize: '24px', 
+          fontWeight: 'bold', 
+          cursor: 'pointer'
+        }}
+      >
+        →
+      </button>
     </div>
   )
 }
