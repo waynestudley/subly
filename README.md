@@ -5,42 +5,24 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
-
+### `npm i` (install)
 ### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+...for a deployable build.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Subly
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+I've added a few branches along the way - an initial React/TS boilerplate, then general API call and display moving on to a little more styled and then fully styled with option of how to view the cards/items.
 
-### `npm run eject`
+I'd decided to add the initial state as a scrollable horizontal list - just as I liked that idea but then I've added a toggle (bottom left) to switch between that and a standard tiled window.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The icons etc. don't exactly match those of the visuals supplied - I cut corners and used generic REact Icons for ease (but I think they work?).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+On 'error' cards - the delete button does remove the item from the current state (refresh to revert) - this should really have a confirmation window to OK the deletion but I let this go... not out of laziness - just as I like the imediacy of the deletion!
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+I had started to build some basic mocked tests but I'm wary of time - I had suggested to Gemma earliler today that I'd get this over early afternoon - so I'm going to push this as it is (the only tests there currently fail) - I'll get back to it later in the day and update the GitHub repo with some working tests.

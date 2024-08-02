@@ -9,6 +9,7 @@ type CardData = {
   cover?: string
   name: string
   fileStatus: string
+  languages: string[] // Add languages property
 }
 
 type ImageScrollerProps = {
@@ -50,8 +51,8 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ cards, onDelete }) => {
         onClick={scrollLeft} 
         style={{ 
           position: 'absolute', 
-          left: 0, 
-          zIndex: 1, 
+          left: '10px', 
+          zIndex: 1000, 
           width: '50px', 
           height: '50px', 
           borderRadius: '50%', 
@@ -75,8 +76,10 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ cards, onDelete }) => {
           scrollBehavior: 'smooth',
           alignItems: 'center',
           width: '100%',
-          gap: '16px'
+          gap: '16px',
+          paddingBottom: '20px', // Add padding to ensure the bottom of the cards and shadows are not clipped
         }}
+        className="hide-scrollbar" // Add a class for custom scrollbar styles
       >
         {cards.map((card) => (
           <div key={card.id} style={{ flexShrink: 0 }}>
@@ -87,6 +90,7 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ cards, onDelete }) => {
               image={card.cover}
               name={card.name}
               fileStatus={card.fileStatus}
+              languages={card.languages} // Pass languages property
               onDelete={() => onDelete(card.id)}
             />
           </div>
@@ -96,8 +100,8 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ cards, onDelete }) => {
         onClick={scrollRight} 
         style={{ 
           position: 'absolute', 
-          right: 0, 
-          zIndex: 1, 
+          right: '10px', 
+          zIndex: 1000, 
           width: '50px', 
           height: '50px', 
           borderRadius: '50%', 
