@@ -1,7 +1,6 @@
-// src/components/Dashboard.tsx
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import Card from './Card'
+import ImageScroller from './ImageScroller'
 
 type CardData = {
   title: string
@@ -15,27 +14,36 @@ type CardData = {
 
 const Dashboard: React.FC = () => {
   const [cards, setCards] = useState<CardData[]>([])
+  const [error, setError] = useState<string | null>(null)
+  const API_URL = 'https://run.mocky.io/v3/3c20b2a9-4a8b-46b6-83cb-01b83e680738'
 
   useEffect(() => {
-    axios.get('https://run.mocky.io/v3/3c20b2a9-4a8b-46b6-83cb-01b83e680738')
-      .then(response => setCards(response.data))
-      .catch(error => console.error('Error fetching data:', error))
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(API_URL)
+        
+        // Check if the response is an array
+        if (Array.isArray(response.data)) {
+          setCards(response.data)
+          setError(null)
+        } else {
+          throw new Error('API response is not an array')
+        }
+      } catch (error) {
+        setError('Error fetching data: ' + (error as Error).message)
+      }
+    }
+
+    fetchData()
   }, [])
 
   return (
-    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-      {cards.map((card, index) => (
-        <Card
-          key={index}
-          title={card.title}
-          subtitle={card.subtitle}
-          status={card.status}
-          image={card.cover}
-          action={card.action}
-          name={card.name}
-          fileStatus={card.fileStatus}
-        />
-      ))}
+    <div style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      {error ? (
+        <div>{error}</div>
+      ) : (
+        <ImageScroller cards={cards} />
+      )}
     </div>
   )
 }

@@ -1,4 +1,3 @@
-// src/components/Card.tsx
 import React from 'react'
 
 type CardProps = {
@@ -26,15 +25,15 @@ const Card: React.FC<CardProps> = ({ title, subtitle, status, image, action, nam
   }
 
   return (
-    <div style={{ border: `1px solid ${statusColor}`, padding: '0', maxWidth: '300px' }}>
+    <div style={{ border: `2px solid ${statusColor}`, padding: '0', maxWidth: '300px' }}>
       {image && <img src={image} alt={title} style={{ width: '100%' }} />}
       <div style={{ padding: '10px' }}>
-        <h3>{title}</h3>
-        <p>{subtitle}</p>
-        <p><strong>{name}</strong></p>
-        <p>{status}</p>
+        <h3 style={{ margin: '0', padding: '5px 0' }}>{title}</h3>
+        <p style={{ margin: '0', padding: '5px 0' }}>{subtitle}</p>
+        <p style={{ margin: '0', padding: '5px 0' }}><strong>{name}</strong></p>
+        <p style={{ margin: '0', padding: '5px 0' }}>{fileStatus}</p>
         {status === 'error' && action && (
-          <div>
+          <div style={{ marginTop: '10px' }}>
             <button onClick={() => alert('Delete file')}>Delete file</button>
             <button onClick={() => alert('Report issue')}>Report issue</button>
           </div>
