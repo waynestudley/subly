@@ -9,7 +9,7 @@ module.exports = {
       '^.+\\.tsx?$': 'ts-jest'
     },
     transformIgnorePatterns: [
-      'node_modules/(?!variables/.*)'
+      'node_modules/(?!axios-mock-adapter)'
     ]
   }
   
